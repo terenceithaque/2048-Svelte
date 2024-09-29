@@ -1,3 +1,34 @@
+
+<script>
+    // Programme du jeu de 2048
+
+    /**@var grille Liste représentant la grille de jeu*/
+    let grille = [[0,0,0,0],
+                  [0,0,0,0],
+                  [0,0,0,0],
+                  [0,0,0,0]] 
+
+    
+    /**@function genererNombre Génère un nombre (2 ou 4) en utilisant une probabilité*/
+    function genererNombre(){
+        /**@var probabilite4 Probabilité q'un 4 apparaise, entre 0 et 100*/
+        const probabilite4 = Math.floor(Math.random()*101);  
+        console.log(probabilite4 + "% de chances qu'un 4 soit généré");
+
+        if(probabilite4 >= 67){ // S'il y a 67 % de chances ou plus de générer un 4
+            return 4; // Retourner un 4
+
+        } else { // Sinon
+            return 2; // Retourner un 2
+        }
+
+    }
+
+    let nombre = genererNombre();
+    console.log("Nombre généré:", nombre);
+</script>
+
+
 <title>Jeu de 2048</title>
 
 <h1>Bienvenue sur le jeu de 2048 !</h1>
