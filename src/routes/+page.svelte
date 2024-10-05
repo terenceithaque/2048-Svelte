@@ -36,7 +36,9 @@
             //document.body.appendChild(canevas); // Ajouter le canevas au corps du document
 
 
-            console.log("Canevas créé !");7
+            console.log("Canevas créé !");
+
+            document.body.appendChild(canevas);
 
             return canevas;    
             
@@ -108,7 +110,7 @@
             let ctx = canevas.getContext("2d"); // Obtenir le contexte du canevas
 
             ctx.fillStyle = "red";
-            ctx.fillRect(10, 10, 80, 70);
+            ctx.fillRect(10, 10, 70, 500);
 
             let ligne = grille[i]; // Ligne correspondante à l'indice
             console.log(ligne);
@@ -124,6 +126,8 @@
 
 
 }
+
+
 afficherGrille();
 
 
@@ -136,12 +140,10 @@ afficherGrille();
 <p>Hello World !</p>
 <p>Le but du jeu est d'associer des tuiles dont le nombre est équivalent dans une grille afin d'obtenir une tuile avec le nombre 2048. Bonne partie !</p>
 
-<canvas id="gridCanvas">
-    <p> {canevas}</p>
+<p> {canevas}</p>
     
 
 
-</canvas>
 
 
 <style>
