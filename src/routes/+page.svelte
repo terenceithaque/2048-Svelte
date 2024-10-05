@@ -1,5 +1,5 @@
 
-<script>
+<script lang="ts">
 
 
     // Programme du jeu de 2048
@@ -12,18 +12,22 @@
 
 
     /**@var canevas Canevas dans lequel on dessine la grille de jeu*/
-    let canevas;
+    let canevas: HTMLCanvasElement;
     
 
-
-    onMount(() =>{
+    /**@function initialiserCanevas Initialise le canevas*/
+    async function initialiserCanevas(){
+        onMount(() =>{
                 canevas = createCanvas(); // Créer le canevas
                 console.log("canevas :", canevas);
             });
+
+    }
+   
     
 
     /**@function createCanvas Crée un nouvel élément canvas et l'ajoute au document*/
-    function createCanvas(){
+    function createCanvas(): HTMLCanvasElement{
             console.log("Création du canevas...");
             canevas = document.createElement("canvas"); // Créer un nouvel élément canvas et l'affecter à la variable canevas
             canevas.id = "gridCanvas"; // ID du canevas
@@ -35,6 +39,7 @@
             console.log("Canevas créé !");7
 
             return canevas;    
+            
     }
             
 
@@ -54,10 +59,10 @@
     
     /**@function getCanvas Identifie ou le canevas, et le retourne*/
 
-    function getCanvas(){
+    function getCanvas(): HTMLCanvasElement {
         if(!canevas){ // Si la variable canevas est nulle
             onMount(() => {
-                canevas = createCanvas();
+                let canevas = createCanvas();
 
             })
         }
@@ -89,7 +94,39 @@
     console.log("Nombre généré:", nombre);
 
     //canevas = getCanvas(); // Obtenir le canevas du document ou le créer s'il n'existe pas
+    canevas = getCanvas(); 
     console.log("canevas :", canevas);
+    console.log("canevas est de type ", typeof canevas);
+
+    
+
+    /**@function afficherGrille Affiche la grille de jeu sous forme graphique*/
+    async function afficherGrille(){
+        await initialiserCanevas();
+        try{
+            for(let i =0; i < grille.length; i ++){ // Pour tout indice de la grille
+            let ctx = canevas.getContext("2d"); // Obtenir le contexte du canevas
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(10, 10, 80, 70);
+
+            let ligne = grille[i]; // Ligne correspondante à l'indice
+            console.log(ligne);
+
+        } 
+        } catch (erreur){
+            console.error(erreur);
+
+        
+        
+
+    }
+
+
+}
+afficherGrille();
+
+
 </script>
 
 
@@ -100,12 +137,9 @@
 <p>Le but du jeu est d'associer des tuiles dont le nombre est équivalent dans une grille afin d'obtenir une tuile avec le nombre 2048. Bonne partie !</p>
 
 <canvas id="gridCanvas">
-    {#each grille as ligne} <!--Pour chaque ligne de la grille-->
-
-    <p>{ligne}</p>
+    <p> {canevas}</p>
     
 
-{/each}
 
 </canvas>
 
